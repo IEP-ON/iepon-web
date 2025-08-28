@@ -349,7 +349,7 @@ const AdminDashboard: React.FC = () => {
             <div className="flex gap-4">
               <Select
                 value={roleFilter}
-                onChange={setRoleFilter}
+                onChange={(e) => setRoleFilter(e.target.value)}
                 options={[
                   { value: 'all', label: '전체 역할' },
                   { value: 'super_admin', label: '슈퍼 관리자' },
@@ -359,7 +359,7 @@ const AdminDashboard: React.FC = () => {
               />
               <Select
                 value={statusFilter}
-                onChange={setStatusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
                 options={[
                   { value: 'all', label: '전체 상태' },
                   { value: 'active', label: '활성' },
