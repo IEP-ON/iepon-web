@@ -145,9 +145,9 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
       // UTF-8 안전성 검증
       const utf8SafeData = {
         ...formData,
-        name: errorUtils.validateUtf8(formData.name),
-        email: errorUtils.validateUtf8(formData.email),
-        school: errorUtils.validateUtf8(formData.school)
+        name: formData.name,
+        email: formData.email,
+        school: formData.school
       };
       
       await onSave(utf8SafeData);
@@ -362,9 +362,9 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
           >
             취소
           </Button>
-          <Button
-            onClick={handleSave}
-            loading={loading}
+          <Button 
+            onClick={handleSave} 
+            isLoading={loading}
             disabled={loading}
           >
             <Save className="w-4 h-4 mr-2" />

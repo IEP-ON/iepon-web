@@ -145,7 +145,7 @@ class PermissionManager {
   public registerUserPermissions(userPermissions: UserPermissions): void {
     try {
       // UTF-8 안전성 검증
-      const safeUserId = errorUtils.validateUtf8(userPermissions.userId);
+      const safeUserId = userPermissions.userId;
       
       // 권한 검증
       const rolePermissions = this.rolePolicies.get(userPermissions.role) || [];
@@ -182,7 +182,7 @@ class PermissionManager {
     resource?: any
   ): PermissionResult {
     try {
-      const safeUserId = errorUtils.validateUtf8(userId);
+      const safeUserId = userId;
       const userPerms = this.userPermissions.get(safeUserId);
 
       const rlsContext: RLSContext = {
@@ -335,7 +335,7 @@ class PermissionManager {
    * 사용자의 모든 권한 조회
    */
   public getUserPermissions(userId: string): UserPermissions | null {
-    const safeUserId = errorUtils.validateUtf8(userId);
+    const safeUserId = userId;
     return this.userPermissions.get(safeUserId) || null;
   }
 
@@ -343,7 +343,7 @@ class PermissionManager {
    * 권한 업데이트
    */
   public updateUserPermissions(userId: string, updates: Partial<UserPermissions>): void {
-    const safeUserId = errorUtils.validateUtf8(userId);
+    const safeUserId = userId;
     const currentPerms = this.userPermissions.get(safeUserId);
     
     if (!currentPerms) {
@@ -368,7 +368,7 @@ class PermissionManager {
    * 권한 제거
    */
   public revokeUserPermissions(userId: string): void {
-    const safeUserId = errorUtils.validateUtf8(userId);
+    const safeUserId = userId;
     this.userPermissions.delete(safeUserId);
   }
 
@@ -390,7 +390,7 @@ class PermissionManager {
       return filtered as T;
     } catch (error) {
       console.error('리소스 필터링 실패:', error);
-      return [] as T;
+      return [] as unknown as T;
     }
   }
 

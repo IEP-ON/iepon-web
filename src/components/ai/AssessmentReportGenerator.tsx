@@ -339,14 +339,19 @@ const AssessmentReportGenerator: React.FC<AssessmentReportGeneratorProps> = ({
           </div>
 
           <div>
-            <Input
-              label="특별 고려사항 및 메모"
+            <label className="form-label">
+              특별 고려사항 및 메모
+            </label>
+            <textarea
+              className="form-input"
               value={settings.notes}
               onChange={(e) => updateSettings({ notes: e.target.value })}
               placeholder="평가 시 특별히 고려해야 할 사항이나 배경 정보를 입력하세요..."
               rows={3}
-              helperText="학생의 최근 상황 변화, 특별한 사건, 새로운 지원 시작 등"
             />
+            <p className="text-sm text-gray-500 mt-1">
+              학생의 최근 상황 변화, 특별한 사건, 새로운 지원 시작 등
+            </p>
           </div>
         </div>
 

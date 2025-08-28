@@ -286,7 +286,7 @@ const LessonPlanGenerator: React.FC<LessonPlanGeneratorProps> = ({
             <Select
               label="계획 유형"
               value={settings.planType}
-              onChange={(value) => updateSettings({ planType: value as any })}
+              onChange={(e) => updateSettings({ planType: e.target.value as 'daily' | 'weekly' | 'monthly' })}
               options={[
                 { value: 'daily', label: '일일 계획' },
                 { value: 'weekly', label: '주간 계획' },
@@ -299,7 +299,7 @@ const LessonPlanGenerator: React.FC<LessonPlanGeneratorProps> = ({
             <Select
               label="교과"
               value={settings.subject}
-              onChange={(value) => updateSettings({ subject: value })}
+              onChange={(e) => updateSettings({ subject: e.target.value })}
               options={subjectOptions}
             />
           </div>
@@ -457,18 +457,21 @@ const LessonPlanGenerator: React.FC<LessonPlanGeneratorProps> = ({
             <Select
               label="평가 방법"
               value={settings.assessmentMethod}
-              onChange={(value) => updateSettings({ assessmentMethod: value })}
+              onChange={(e) => updateSettings({ assessmentMethod: e.target.value })}
               options={assessmentOptions}
             />
           </div>
           <div>
-            <Input
-              label="특이사항 및 메모"
-              value={settings.notes}
-              onChange={(e) => updateSettings({ notes: e.target.value })}
-              placeholder="특별히 고려할 사항이나 메모를 입력하세요..."
-              rows={3}
-            />
+            <div>
+              <label className="form-label">특수 요청사항 및 메모</label>
+              <textarea
+                className="form-input"
+                value={settings.notes}
+                onChange={(e) => updateSettings({ notes: e.target.value })}
+                placeholder="학생의 특성에 맞는 특별한 고려사항을 입력하세요..."
+                rows={3}
+              />
+            </div>
           </div>
         </div>
 

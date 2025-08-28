@@ -284,7 +284,7 @@ const CurriculumGenerationEngine: React.FC<CurriculumGenerationEngineProps> = ({
             <Select
               label="생성할 콘텐츠 유형"
               value={settings.serviceType}
-              onChange={(value) => updateSettings({ serviceType: value as AIServiceType })}
+              onChange={(e) => updateSettings({ serviceType: e.target.value as AIServiceType })}
               options={serviceTypeOptions}
               required
             />
@@ -361,41 +361,29 @@ const CurriculumGenerationEngine: React.FC<CurriculumGenerationEngineProps> = ({
                 </label>
               </div>
             </div>
-
-            {/* 커스텀 지시사항 */}
-            <div className="mt-4">
-              <Input
-                label="추가 지시사항"
-                value={settings.customInstructions}
-                onChange={(e) => updateSettings({ customInstructions: e.target.value })}
-                placeholder="특별한 요구사항이나 지시사항을 입력하세요..."
-                rows={3}
-                helperText="AI가 고려해야 할 특별한 사항들을 자유롭게 작성하세요."
-              />
-            </div>
           </div>
         )}
 
         {/* 생성 버튼 */}
-        <div className="mt-6 flex justify-end">
-          <Button
-            onClick={handleGenerate}
-            disabled={aiGeneration.state.status === 'loading'}
-            className="px-6"
-          >
-            {aiGeneration.state.status === 'loading' ? (
-              <>
-                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                생성 중...
-              </>
-            ) : (
-              <>
-                <Brain className="w-4 h-4 mr-2" />
-                AI 생성 시작
-              </>
-            )}
-          </Button>
-        </div>
+      <div className="px-6 py-4 border-t border-gray-200">
+        <Button
+          onClick={handleGenerate}
+          disabled={aiGeneration.state.status === 'loading'}
+          className="px-6"
+        >
+          {aiGeneration.state.status === 'loading' ? (
+            <>
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              생성 중...
+            </>
+          ) : (
+            <>
+              <Brain className="w-4 h-4 mr-2" />
+              AI 생성 시작
+            </>
+          )}
+        </Button>
+      </div>
       </div>
 
       {/* 생성 결과 미리보기 */}
@@ -440,7 +428,7 @@ const CurriculumGenerationEngine: React.FC<CurriculumGenerationEngineProps> = ({
                   <FileText className="w-4 h-4 text-gray-400" />
                   <div>
                     <span className="text-sm text-gray-900">
-                      {AI_SERVICE_LABELS[result.serviceType]}
+                      {AI_SERVICE_LABELS[result.serviceType as keyof typeof AI_SERVICE_LABELS] || result.serviceType}
                     </span>
                     <span className="text-xs text-gray-500 ml-2">
                       {new Date(result.generatedAt).toLocaleString('ko-KR')}

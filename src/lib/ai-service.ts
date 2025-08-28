@@ -242,7 +242,7 @@ export function createContextUsageInfo(): ContextUsageInfo {
 /**
  * 기본 AI 생성 요청 팩토리 함수
  */
-export function createBaseAIGenerationRequest(): AIGenerationRequest {
+export function createBaseAIGenerationRequest(): Partial<AIGenerationRequest> {
   return {
     studentId: '',
     serviceType: AI_SERVICE_TYPES.CURRICULUM_ASSIGNMENT,
