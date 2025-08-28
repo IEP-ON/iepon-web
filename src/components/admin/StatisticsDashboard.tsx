@@ -191,7 +191,7 @@ const StatisticsDashboard: React.FC = () => {
         <div className="flex gap-4">
           <Select
             value={timeRange}
-            onChange={setTimeRange}
+            onChange={(e) => setTimeRange(e.target.value)}
             options={[
               { value: '7days', label: '최근 7일' },
               { value: '30days', label: '최근 30일' },
@@ -201,7 +201,7 @@ const StatisticsDashboard: React.FC = () => {
           />
           <Select
             value={reportType}
-            onChange={setReportType}
+            onChange={(e) => setReportType(e.target.value)}
             options={[
               { value: 'overview', label: '전체 개요' },
               { value: 'users', label: '사용자 분석' },
