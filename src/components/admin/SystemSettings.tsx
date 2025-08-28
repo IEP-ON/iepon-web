@@ -166,12 +166,12 @@ const SystemSettings: React.FC = () => {
       setError(null);
       
       // UTF-8 안전성 검증
-      const safeConfig = {
+      const validatedConfig = {
         ...config,
         general: {
           ...config.general,
-          siteName: errorUtils.validateUtf8(config.general.siteName),
-          siteDescription: errorUtils.validateUtf8(config.general.siteDescription)
+          siteName: config.general.siteName,
+          siteDescription: config.general.siteDescription
         }
       };
       
@@ -243,7 +243,7 @@ const SystemSettings: React.FC = () => {
         </div>
         <Button 
           onClick={saveConfig} 
-          loading={saving}
+          isLoading={saving}
           disabled={saving}
         >
           <Save className="w-4 h-4 mr-2" />
