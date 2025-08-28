@@ -48,9 +48,9 @@ const mockCurriculums: CurriculumItem[] = [
 ];
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // POST: 교육과정 상태 변경
@@ -59,7 +59,7 @@ export async function POST(
   { params }: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const { status, reason } = await request.json();
     
     // 유효성 검사
@@ -100,7 +100,7 @@ export async function POST(
 
     mockCurriculums[curriculumIndex] = updatedCurriculum;
 
-    const statusMessages = {
+    const statusMessages: Record<string, string> = {
       active: '승인',
       pending: '대기',
       archived: '보관'
@@ -108,7 +108,7 @@ export async function POST(
 
     const response: ApiResponse<CurriculumItem> = {
       success: true,
-      message: `교육과정이 ${statusMessages[status]} 상태로 변경되었습니다.`,
+      message: `교육과정이 ${statusMessages[status] || '알 수 없음'} 상태로 변경되었습니다.`,
       data: updatedCurriculum,
       timestamp: new Date().toISOString()
     };

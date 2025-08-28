@@ -60,9 +60,9 @@ const mockCurriculums: CurriculumItem[] = [
 ];
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 // GET: 특정 교육과정 조회
@@ -71,7 +71,7 @@ export async function GET(
   { params }: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     const curriculum = mockCurriculums.find(c => c.id === id);
     
@@ -111,7 +111,7 @@ export async function PUT(
   { params }: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     
     const curriculumIndex = mockCurriculums.findIndex(c => c.id === id);
@@ -162,7 +162,7 @@ export async function DELETE(
   { params }: RouteParams
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     
     const curriculumIndex = mockCurriculums.findIndex(c => c.id === id);
     
