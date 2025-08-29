@@ -171,7 +171,7 @@ const AssessmentReportGenerator: React.FC<AssessmentReportGeneratorProps> = ({
 
       const result = await aiGeneration.generateWithContext(
         currentStudent.id,
-        request,
+        request as any,
         preferences
       );
 

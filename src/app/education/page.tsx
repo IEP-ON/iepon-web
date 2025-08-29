@@ -111,21 +111,23 @@ export default function EducationPage() {
       <div className="container fade-in" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-8)' }}>
         
         {/* 페이지 헤더 */}
-        <div className="flex-between slide-up" style={{ marginBottom: 'var(--space-8)' }}>
-          <div>
-            <h1 className="text-heading-1" style={{ marginBottom: 'var(--space-2)' }}>교육 계획 관리</h1>
-            <p className="text-body" style={{ color: 'var(--color-neutral-600)' }}>
-              학생별 개별화 교육 계획을 작성하고 관리하세요
-            </p>
+        <div className="slide-up" style={{ marginBottom: 'var(--space-8)' }}>
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+            <div>
+              <h1 className="text-heading-1" style={{ marginBottom: 'var(--space-2)' }}>교육 계획 관리</h1>
+              <p className="text-body hidden sm:block" style={{ color: 'var(--color-neutral-600)' }}>
+                학생별 개별화 교육 계획을 작성하고 관리하세요
+              </p>
+            </div>
+            <button className="btn btn-primary w-full sm:w-auto btn-touch scale-in">
+              <Plus className="w-5 h-5" />
+              <span>새 계획 작성</span>
+            </button>
           </div>
-          <button className="btn btn-primary btn-lg scale-in">
-            <Plus className="w-5 h-5" />
-            <span>새 계획 작성</span>
-          </button>
         </div>
 
         {/* 통계 카드 */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 'var(--space-6)', marginBottom: 'var(--space-8)' }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6" style={{ marginBottom: 'var(--space-8)' }}>
           <div className="card card-interactive scale-in" style={{ animationDelay: '0.1s' }}>
             <div className="card-body">
               <div className="flex-between">
@@ -133,9 +135,9 @@ export default function EducationPage() {
                   <p className="text-body-sm" style={{ color: 'var(--color-neutral-500)', marginBottom: 'var(--space-1)' }}>담당 학생</p>
                   <p className="text-heading-2" style={{ color: 'var(--color-neutral-900)' }}>{students.length}</p>
                 </div>
-                <div className="flex-center" style={{ 
-                  width: '3rem',
-                  height: '3rem',
+                <div className="flex items-center justify-center" style={{ 
+                  width: '2.5rem',
+                  height: '2.5rem',
                   backgroundColor: 'var(--color-primary-100)',
                   borderRadius: 'var(--radius-md)'
                 }}>
@@ -147,14 +149,14 @@ export default function EducationPage() {
 
           <div className="card card-interactive scale-in" style={{ animationDelay: '0.2s' }}>
             <div className="card-body">
-              <div className="flex-between">
+              <div className="flex justify-between items-center">
                 <div>
                   <p className="text-body-sm" style={{ color: 'var(--color-neutral-500)', marginBottom: 'var(--space-1)' }}>IEP 계획</p>
                   <p className="text-heading-2" style={{ color: 'var(--color-neutral-900)' }}>{ieps.length}</p>
                 </div>
-                <div className="flex-center" style={{ 
-                  width: '3rem',
-                  height: '3rem',
+                <div className="flex items-center justify-center" style={{ 
+                  width: '2.5rem',
+                  height: '2.5rem',
                   backgroundColor: 'var(--color-success-100)',
                   borderRadius: 'var(--radius-md)'
                 }}>
@@ -166,14 +168,14 @@ export default function EducationPage() {
 
           <div className="card card-interactive scale-in" style={{ animationDelay: '0.3s' }}>
             <div className="card-body">
-              <div className="flex-between">
+              <div className="flex justify-between items-center">
                 <div>
                   <p className="text-body-sm" style={{ color: 'var(--color-neutral-500)', marginBottom: 'var(--space-1)' }}>교육 계획</p>
                   <p className="text-heading-2" style={{ color: 'var(--color-neutral-900)' }}>{educationPlans.length}</p>
                 </div>
-                <div className="flex-center" style={{ 
-                  width: '3rem',
-                  height: '3rem',
+                <div className="flex items-center justify-center" style={{ 
+                  width: '2.5rem',
+                  height: '2.5rem',
                   backgroundColor: '#f3e8ff',
                   borderRadius: 'var(--radius-md)'
                 }}>
@@ -185,7 +187,7 @@ export default function EducationPage() {
 
           <div className="card card-interactive scale-in" style={{ animationDelay: '0.4s' }}>
             <div className="card-body">
-              <div className="flex-between">
+              <div className="flex justify-between items-center">
                 <div>
                   <p className="text-body-sm" style={{ color: 'var(--color-neutral-500)', marginBottom: 'var(--space-1)' }}>활성 목표</p>
                   <p className="text-heading-2" style={{ color: 'var(--color-neutral-900)' }}>
@@ -194,9 +196,9 @@ export default function EducationPage() {
                     )}
                   </p>
                 </div>
-                <div className="flex-center" style={{ 
-                  width: '3rem',
-                  height: '3rem',
+                <div className="flex items-center justify-center" style={{ 
+                  width: '2.5rem',
+                  height: '2.5rem',
                   backgroundColor: 'var(--color-warning-100)',
                   borderRadius: 'var(--radius-md)'
                 }}>
@@ -208,7 +210,7 @@ export default function EducationPage() {
 
           <div className="card card-interactive scale-in" style={{ animationDelay: '0.5s' }}>
             <div className="card-body">
-              <div className="flex-between">
+              <div className="flex justify-between items-center">
                 <div>
                   <p className="text-body-sm" style={{ color: 'var(--color-neutral-500)', marginBottom: 'var(--space-1)' }}>완료율</p>
                   <p className="text-heading-2" style={{ color: 'var(--color-neutral-900)' }}>
@@ -222,9 +224,9 @@ export default function EducationPage() {
                     ) : 0}%
                   </p>
                 </div>
-                <div className="flex-center" style={{ 
-                  width: '3rem',
-                  height: '3rem',
+                <div className="flex items-center justify-center" style={{ 
+                  width: '2.5rem',
+                  height: '2.5rem',
                   backgroundColor: '#d1fae5',
                   borderRadius: 'var(--radius-md)'
                 }}>
@@ -236,7 +238,7 @@ export default function EducationPage() {
         </div>
 
         {/* IEP 목록 */}
-        <div className="grid-cols-2" style={{ marginBottom: 'var(--space-8)' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" style={{ marginBottom: 'var(--space-8)' }}>
           <div className="card slide-up" style={{ animationDelay: '0.6s' }}>
             <div className="card-header">
               <h2 className="text-heading-3">개별화교육계획 (IEP)</h2>
@@ -280,7 +282,7 @@ export default function EducationPage() {
                           {getStatusBadge(iep.status)}
                         </div>
                         
-                        <div className="grid grid-cols-2 gap-4 mb-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
                           <div>
                             <p className="text-xs text-gray-500">연간 목표</p>
                             <p className="text-sm font-medium">{iep.annualGoals.length}개</p>
@@ -304,23 +306,22 @@ export default function EducationPage() {
                           </div>
                         </div>
 
-                        <div className="flex space-x-2">
-                          <Button 
-                            variant="outline" 
-                            size="sm"
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <button 
+                            className="btn btn-outline btn-sm btn-touch"
                             onClick={() => setSelectedIEP(iep)}
                           >
-                            <Eye className="w-4 h-4 mr-1" />
-                            상세보기
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            <Edit className="w-4 h-4 mr-1" />
-                            수정
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            <Download className="w-4 h-4 mr-1" />
-                            다운로드
-                          </Button>
+                            <Eye className="w-4 h-4" />
+                            <span>상세보기</span>
+                          </button>
+                          <button className="btn btn-outline btn-sm btn-touch">
+                            <Edit className="w-4 h-4" />
+                            <span>수정</span>
+                          </button>
+                          <button className="btn btn-outline btn-sm btn-touch">
+                            <Download className="w-4 h-4" />
+                            <span>다운로드</span>
+                          </button>
                         </div>
                       </div>
                     );
@@ -334,7 +335,7 @@ export default function EducationPage() {
           <div className="card">
             <div className="card-header">
               <h2 className="text-heading-3">교육 계획</h2>
-              <p className="text-body-small text-gray-600">월간/주간 세부 교육 계획</p>
+              <p className="text-body-sm" style={{ color: 'var(--color-neutral-600)' }}>월간/주간 세부 교육 계획</p>
             </div>
             <div className="card-body">
               {isLoading ? (
@@ -362,7 +363,7 @@ export default function EducationPage() {
                           {getStatusBadge(plan.status)}
                         </div>
                         
-                        <div className="grid grid-cols-2 gap-4 mb-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
                           <div>
                             <p className="text-xs text-gray-500">유형</p>
                             <p className="text-sm font-medium">{plan.type === 'monthly' ? '월간' : '주간'} 계획</p>
@@ -391,23 +392,22 @@ export default function EducationPage() {
                           </div>
                         </div>
 
-                        <div className="flex space-x-2">
-                          <Button 
-                            variant="outline" 
-                            size="sm"
+                        <div className="flex flex-col sm:flex-row gap-2">
+                          <button 
+                            className="btn btn-outline btn-sm btn-touch"
                             onClick={() => setSelectedPlan(plan)}
                           >
-                            <Eye className="w-4 h-4 mr-1" />
-                            상세보기
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            <Edit className="w-4 h-4 mr-1" />
-                            수정
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            <Download className="w-4 h-4 mr-1" />
-                            다운로드
-                          </Button>
+                            <Eye className="w-4 h-4" />
+                            <span>상세보기</span>
+                          </button>
+                          <button className="btn btn-outline btn-sm btn-touch">
+                            <Edit className="w-4 h-4" />
+                            <span>수정</span>
+                          </button>
+                          <button className="btn btn-outline btn-sm btn-touch">
+                            <Download className="w-4 h-4" />
+                            <span>다운로드</span>
+                          </button>
                         </div>
                       </div>
                     );
@@ -419,15 +419,15 @@ export default function EducationPage() {
         </div>
 
         {/* 빠른 액션 */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" style={{ marginTop: 'var(--space-8)' }}>
           <div className="card">
             <div className="card-body text-center">
               <Plus className="w-12 h-12 text-blue-500 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">IEP 작성</h3>
               <p className="text-sm text-gray-600 mb-4">새로운 개별화교육계획을 작성하세요</p>
-              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/education/create'}>
+              <button className="btn btn-outline btn-touch w-full" onClick={() => window.location.href = '/education/create'}>
                 작성하기
-              </Button>
+              </button>
             </div>
           </div>
 
@@ -436,9 +436,9 @@ export default function EducationPage() {
               <Calendar className="w-12 h-12 text-green-500 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">월별 평가</h3>
               <p className="text-sm text-gray-600 mb-4">개별화 기반 수행평가를 실시하세요</p>
-              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/education/evaluation'}>
+              <button className="btn btn-outline btn-touch w-full" onClick={() => window.location.href = '/education/evaluation'}>
                 평가하기
-              </Button>
+              </button>
             </div>
           </div>
 
@@ -447,9 +447,9 @@ export default function EducationPage() {
               <BarChart3 className="w-12 h-12 text-purple-500 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">현행수준</h3>
               <p className="text-sm text-gray-600 mb-4">학생의 현재 능력 수준을 평가하세요</p>
-              <Button variant="outline" className="w-full" onClick={() => window.location.href = '/education/assessment'}>
+              <button className="btn btn-outline btn-touch w-full" onClick={() => window.location.href = '/education/assessment'}>
                 평가하기
-              </Button>
+              </button>
             </div>
           </div>
 
@@ -458,29 +458,29 @@ export default function EducationPage() {
               <TrendingUp className="w-12 h-12 text-orange-500 mx-auto mb-4" />
               <h3 className="font-semibold text-gray-900 mb-2">진도 분석</h3>
               <p className="text-sm text-gray-600 mb-4">학생별 진도를 분석하고 리포트를 생성하세요</p>
-              <Button variant="outline" className="w-full">
+              <button className="btn btn-outline btn-touch w-full">
                 분석하기
-              </Button>
+              </button>
             </div>
           </div>
         </div>
 
         {/* IEP 상세 모달 */}
         {selectedIEP && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-              <div className="flex items-center justify-between p-6 border-b">
-                <div>
-                  <h2 className="text-xl font-semibold">개별화교육계획 (IEP) 상세</h2>
-                  <p className="text-sm text-gray-600 mt-1">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 z-50">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+              <div className="flex items-center justify-between p-4 sm:p-6 border-b">
+                <div className="flex-1 min-w-0">
+                  <h2 className="text-lg sm:text-xl font-semibold truncate">개별화교육계획 (IEP) 상세</h2>
+                  <p className="text-sm text-gray-600 mt-1 truncate">
                     {students.find(s => s.id === selectedIEP.studentId)?.name || '알 수 없음'} - {selectedIEP.academicYear} {selectedIEP.semester}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedIEP(null)}
-                  className="text-gray-400 hover:text-gray-600"
+                  className="btn btn-ghost btn-sm btn-touch ml-2"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
 
@@ -524,9 +524,9 @@ export default function EducationPage() {
                             {getGoalStatusBadge(goal.status)}
                           </div>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                           <span className="text-sm text-gray-600">진도: {goal.progress}%</span>
-                          <div className="w-32 h-2 bg-gray-200 rounded-full">
+                          <div className="w-full sm:w-32 h-2 bg-gray-200 rounded-full">
                             <div 
                               className="h-2 bg-green-500 rounded-full"
                               style={{ width: `${goal.progress}%` }}

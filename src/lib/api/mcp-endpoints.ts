@@ -104,7 +104,7 @@ export class StudentAPI {
       ],
       disabilityRegistrationDate: '2021-01-15',
       hasWelfareCard: true,
-      disabilitySeverity: '중등도',
+      disabilitySeverity: '중증',
       welfareSupports: ['교육지원', '가족지원'],
       treatmentSupports: ['행동치료', '사회성훈련'],
       assistantSupports: ['또래지원'],
@@ -131,7 +131,7 @@ export class StudentAPI {
 
       return createResponse(true, students);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, [] as Student[], {
         code: 'FETCH_STUDENTS_ERROR',
         message: '학생 목록을 가져오는데 실패했습니다.',
         details: error
@@ -146,7 +146,7 @@ export class StudentAPI {
       const student = this.mockStudents.find(s => s.id === id);
       
       if (!student) {
-        return createResponse(false, undefined, {
+        return createResponse(false, {} as any, {
           code: 'STUDENT_NOT_FOUND',
           message: '해당 학생을 찾을 수 없습니다.'
         });
@@ -158,7 +158,7 @@ export class StudentAPI {
 
       return createResponse(true, student);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as Student, {
         code: 'FETCH_STUDENT_ERROR',
         message: '학생 정보를 가져오는데 실패했습니다.',
         details: error
@@ -171,7 +171,7 @@ export class StudentAPI {
 
     try {
       if (!studentData.name || !studentData.birthDate) {
-        return createResponse(false, undefined, {
+        return createResponse(false, {} as any, {
           code: 'VALIDATION_ERROR',
           message: '필수 정보가 누락되었습니다. (이름, 생년월일)'
         });
@@ -209,7 +209,7 @@ export class StudentAPI {
       this.mockStudents.push(newStudent);
       return createResponse(true, newStudent);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as any, {
         code: 'CREATE_STUDENT_ERROR',
         message: '학생 등록에 실패했습니다.',
         details: error
@@ -224,7 +224,7 @@ export class StudentAPI {
       const index = this.mockStudents.findIndex(s => s.id === id);
       
       if (index === -1) {
-        return createResponse(false, undefined, {
+        return createResponse(false, {} as any, {
           code: 'STUDENT_NOT_FOUND',
           message: '해당 학생을 찾을 수 없습니다.'
         });
@@ -243,7 +243,7 @@ export class StudentAPI {
       this.mockStudents[index] = updatedStudent;
       return createResponse(true, updatedStudent);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as any, {
         code: 'UPDATE_STUDENT_ERROR',
         message: '학생 정보 수정에 실패했습니다.',
         details: error
@@ -258,7 +258,7 @@ export class StudentAPI {
       const index = this.mockStudents.findIndex(s => s.id === id);
       
       if (index === -1) {
-        return createResponse(false, undefined, {
+        return createResponse(false, {} as any, {
           code: 'STUDENT_NOT_FOUND',
           message: '해당 학생을 찾을 수 없습니다.'
         });
@@ -267,7 +267,7 @@ export class StudentAPI {
       this.mockStudents.splice(index, 1);
       return createResponse(true, { id });
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as any, {
         code: 'DELETE_STUDENT_ERROR',
         message: '학생 삭제에 실패했습니다.',
         details: error
@@ -291,7 +291,7 @@ export class AIGenerationAPI {
 
     try {
       if (!request.studentId || !request.serviceType) {
-        return createResponse(false, undefined, {
+        return createResponse(false, {} as any, {
           code: 'VALIDATION_ERROR',
           message: '필수 매개변수가 누락되었습니다. (studentId, serviceType)'
         });
@@ -300,7 +300,7 @@ export class AIGenerationAPI {
       // 학생 정보 검증
       const studentResponse = await StudentAPI.getStudent(request.studentId);
       if (!studentResponse.success || !studentResponse.data) {
-        return createResponse(false, undefined, {
+        return createResponse(false, {} as any, {
           code: 'STUDENT_NOT_FOUND',
           message: '해당 학생을 찾을 수 없습니다.'
         });
@@ -349,7 +349,7 @@ export class AIGenerationAPI {
       this.mockResults.push(result);
       return createResponse(true, result);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as any, {
         code: 'AI_GENERATION_ERROR',
         message: 'AI 콘텐츠 생성에 실패했습니다.',
         details: error
@@ -372,7 +372,7 @@ export class AIGenerationAPI {
 
       return createResponse(true, results);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as any, {
         code: 'FETCH_HISTORY_ERROR',
         message: '생성 기록을 가져오는데 실패했습니다.',
         details: error
@@ -564,7 +564,7 @@ export class StatisticsAPI {
 
       return createResponse(true, stats);
     } catch (error) {
-      return createResponse(false, undefined, {
+      return createResponse(false, {} as any, {
         code: 'STATS_ERROR',
         message: '통계 데이터를 가져오는데 실패했습니다.',
         details: error

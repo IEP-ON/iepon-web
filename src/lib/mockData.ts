@@ -69,61 +69,13 @@ export const mockStudents: Student[] = [
     disabilitySeverity: '중증',
     
     // 복지 지원
-    welfareSupports: [
-      {
-        id: 'welfare-001',
-        type: '장애아동수당',
-        agency: '구청 복지과',
-        content: '월 20만원 지급',
-        startDate: '2020-01-01',
-        status: 'active'
-      },
-      {
-        id: 'welfare-002',
-        type: '방과후돌봄',
-        agency: '지역아동센터',
-        content: '평일 방과후 돌봄 서비스',
-        startDate: '2023-03-01',
-        status: 'active'
-      }
-    ],
+    welfareSupports: ['장애아동수당', '방과후돌봄'],
     
     // 치료 지원
-    treatmentSupports: [
-      {
-        id: 'treatment-001',
-        type: '언어치료',
-        frequency: '주2회',
-        agency: '서울언어치료센터',
-        therapistName: '박언어',
-        therapistContact: '010-1111-2222',
-        startDate: '2022-01-01',
-        status: 'active'
-      },
-      {
-        id: 'treatment-002',
-        type: '작업치료',
-        frequency: '주1회',
-        agency: '특수치료센터',
-        therapistName: '최작업',
-        therapistContact: '010-3333-4444',
-        startDate: '2023-06-01',
-        status: 'active'
-      }
-    ],
+    treatmentSupports: ['언어치료', '행동치료'],
     
     // 보조인력 지원
-    assistantSupports: [
-      {
-        id: 'assistant-001',
-        type: '특수교육실무사',
-        hoursPerWeek: 25,
-        name: '정실무',
-        contact: '010-5555-6666',
-        startDate: '2024-01-01',
-        status: 'active'
-      }
-    ],
+    assistantSupports: ['특수교육실무사'],
     
     createdAt: '2023-01-15T09:00:00Z',
     updatedAt: '2024-01-14T15:30:00Z',
@@ -152,30 +104,9 @@ export const mockStudents: Student[] = [
     hasWelfareCard: false,
     disabilitySeverity: '경증',
     
-    welfareSupports: [
-      {
-        id: 'welfare-003',
-        type: '보육료지원',
-        agency: '교육청',
-        content: '특수교육 관련서비스 지원',
-        startDate: '2023-01-01',
-        status: 'active'
-      }
-    ],
+    welfareSupports: ['보육료지원'],
     
-    treatmentSupports: [
-      {
-        id: 'treatment-003',
-        type: '심리치료',
-        frequency: '주1회',
-        agency: '아동심리상담센터',
-        therapistName: '김심리',
-        therapistContact: '010-7777-8888',
-        startDate: '2023-09-01',
-        status: 'active'
-      }
-    ],
-    
+    treatmentSupports: ['심리치료'],
     assistantSupports: [],
     
     createdAt: '2023-02-20T10:00:00Z',
@@ -206,51 +137,11 @@ export const mockStudents: Student[] = [
     hasWelfareCard: true,
     disabilitySeverity: '중증',
     
-    welfareSupports: [
-      {
-        id: 'welfare-004',
-        type: '장애인연금',
-        agency: '국민연금공단',
-        content: '월 30만원 지급',
-        startDate: '2024-01-01',
-        status: 'active'
-      }
-    ],
+    welfareSupports: ['장애인연금'],
     
-    treatmentSupports: [
-      {
-        id: 'treatment-004',
-        type: '언어치료',
-        frequency: '주3회',
-        agency: '대학병원 재활의학과',
-        therapistName: '한언어',
-        therapistContact: '010-9999-0000',
-        startDate: '2020-05-01',
-        status: 'active'
-      },
-      {
-        id: 'treatment-005',
-        type: '놀이치료',
-        frequency: '주1회',
-        agency: '아동발달센터',
-        therapistName: '조놀이',
-        therapistContact: '010-1212-3434',
-        startDate: '2023-03-01',
-        status: 'active'
-      }
-    ],
+    treatmentSupports: ['언어치료', '놀이치료'],
     
-    assistantSupports: [
-      {
-        id: 'assistant-002',
-        type: '사회복무요원',
-        hoursPerWeek: 15,
-        name: '윤복무',
-        contact: '010-5656-7878',
-        startDate: '2023-10-01',
-        status: 'active'
-      }
-    ],
+    assistantSupports: ['사회복무요원'],
     
     createdAt: '2023-03-10T08:00:00Z',
     updatedAt: '2024-01-12T16:45:00Z',

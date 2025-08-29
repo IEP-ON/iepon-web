@@ -247,27 +247,31 @@ export default function StudentsPage() {
       <div className="container animate-fade-in py-8">
         
         {/* 페이지 헤더 */}
-        <div className="flex justify-between items-center animate-slide-up mb-8">
-          <div>
-            <h1 className="text-heading-1 mb-2">학생 관리</h1>
-            <p className="text-body">
-              특수교육 대상 학생들의 정보를 관리하고 모니터링하세요
-            </p>
+        <div className="animate-slide-up mb-8">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+            <div>
+              <h1 className="text-heading-1 mb-2">학생 관리</h1>
+              <p className="text-body hidden sm:block">
+                특수교육 대상 학생들의 정보를 관리하고 모니터링하세요
+              </p>
+            </div>
+            <button
+              className="btn btn-primary w-full sm:w-auto btn-touch"
+              onClick={() => setShowRegistrationModal(true)}
+            >
+              <Plus className="w-4 h-4" />
+              <span>학생 등록</span>
+            </button>
           </div>
-          <button
-            className="btn btn-primary"
-            onClick={() => setShowRegistrationModal(true)}
-          >
-            <Plus className="w-4 h-4" />
-            <span>학생 등록</span>
-          </button>
         </div>
 
         {/* 검색 및 필터 */}
         <div className="card mb-6">
           <div className="card-body">
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-              <div className="md:col-span-2">
+            {/* 모바일 우선 레이아웃 */}
+            <div className="space-y-4">
+              {/* 검색바 - 전체 너비 */}
+              <div>
                 <Input
                   placeholder="학생 이름, 학교명, 학급으로 검색"
                   value={searchTerm}
@@ -276,54 +280,57 @@ export default function StudentsPage() {
                 />
               </div>
               
-              <div>
-                <select
-                  value={selectedGrade}
-                  onChange={(e) => setSelectedGrade(e.target.value === 'all' ? 'all' : Number(e.target.value))}
-                  className="form-select"
-                >
-                  <option value="all">전체 학년</option>
-                  <option value="7">중1 (7학년)</option>
-                  <option value="8">중2 (8학년)</option>
-                  <option value="9">중3 (9학년)</option>
-                </select>
-              </div>
-              
-              <div>
-                <select
-                  value={selectedDisabilityType}
-                  onChange={(e) => setSelectedDisabilityType(e.target.value)}
-                  className="form-input"
-                >
-                  <option value="all">전체 장애유형</option>
-                  <option value="지적장애">지적장애</option>
-                  <option value="자폐성장애">자폐성장애</option>
-                  <option value="정서행동장애">정서행동장애</option>
-                  <option value="의사소통장애">의사소통장애</option>
-                  <option value="학습장애">학습장애</option>
-                  <option value="건강장애">건강장애</option>
-                  <option value="발달지체">발달지체</option>
-                </select>
-              </div>
-              
-              <div>
-                <select
-                  value={selectedStatus}
-                  onChange={(e) => setSelectedStatus(e.target.value as 'all' | 'active' | 'pending')}
-                  className="form-select"
-                >
-                  <option value="all">전체 상태</option>
-                  <option value="active">활성</option>
-                  <option value="pending">대기</option>
-                  <option value="expired">만료</option>
-                </select>
+              {/* 필터 - 모바일에서는 2x2 그리드, 태블릿 이상에서는 3열 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div>
+                  <select
+                    value={selectedGrade}
+                    onChange={(e) => setSelectedGrade(e.target.value === 'all' ? 'all' : Number(e.target.value))}
+                    className="form-select w-full"
+                  >
+                    <option value="all">전체 학년</option>
+                    <option value="7">중1 (7학년)</option>
+                    <option value="8">중2 (8학년)</option>
+                    <option value="9">중3 (9학년)</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <select
+                    value={selectedDisabilityType}
+                    onChange={(e) => setSelectedDisabilityType(e.target.value)}
+                    className="form-input w-full"
+                  >
+                    <option value="all">전체 장애유형</option>
+                    <option value="지적장애">지적장애</option>
+                    <option value="자폐성장애">자폐성장애</option>
+                    <option value="정서행동장애">정서행동장애</option>
+                    <option value="의사소통장애">의사소통장애</option>
+                    <option value="학습장애">학습장애</option>
+                    <option value="건강장애">건강장애</option>
+                    <option value="발달지체">발달지체</option>
+                  </select>
+                </div>
+                
+                <div className="sm:col-span-2 lg:col-span-1">
+                  <select
+                    value={selectedStatus}
+                    onChange={(e) => setSelectedStatus(e.target.value as 'all' | 'active' | 'pending')}
+                    className="form-select w-full"
+                  >
+                    <option value="all">전체 상태</option>
+                    <option value="active">활성</option>
+                    <option value="pending">대기</option>
+                    <option value="expired">만료</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* 통계 요약 */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-6">
           <div className="card animate-fade-in">
             <div className="card-body">
               <div className="flex items-center justify-between">
@@ -419,21 +426,10 @@ export default function StudentsPage() {
                 </p>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <div style={{ minWidth: '1200px' }}>
-                  <table className="w-full" style={{ 
-                    tableLayout: 'fixed', 
-                    borderCollapse: 'collapse',
-                    width: '100%'
-                  }}>
-                    <colgroup>
-                      <col style={{ width: '200px' }} />
-                      <col style={{ width: '180px' }} />
-                      <col style={{ width: '180px' }} />
-                      <col style={{ width: '200px' }} />
-                      <col style={{ width: '120px' }} />
-                      <col style={{ width: '140px' }} />
-                    </colgroup>
+              <>
+                {/* 데스크톱 테이블 뷰 */}
+                <div className="hidden lg:block overflow-x-auto">
+                  <table className="w-full table-mobile">
                     <thead style={{ backgroundColor: 'var(--color-bg-secondary)' }}>
                       <tr style={{ borderBottom: '2px solid var(--color-border)' }}>
                         <th className="px-3 py-4 text-left text-sm font-semibold text-gray-900">
@@ -456,93 +452,190 @@ export default function StudentsPage() {
                         </th>
                       </tr>
                     </thead>
-                  <tbody style={{ backgroundColor: 'var(--color-white)' }}>
-                    {filteredStudents.map((student) => (
-                      <tr key={student.id} style={{ borderBottom: '1px solid var(--color-border-light)' }} className="hover:bg-gray-50">
-                        <td className="px-3 py-4 align-top">
-                          <div>
-                            <div className="text-sm mb-1 font-medium text-gray-900">
-                              {student.name}
+                    <tbody style={{ backgroundColor: 'var(--color-white)' }}>
+                      {filteredStudents.map((student) => (
+                        <tr key={student.id} style={{ borderBottom: '1px solid var(--color-border-light)' }} className="hover:bg-gray-50">
+                          <td className="px-3 py-4 align-top">
+                            <div>
+                              <div className="text-sm mb-1 font-medium text-gray-900">
+                                {student.name}
+                              </div>
+                              <div className="text-xs flex items-center text-gray-500">
+                                <Calendar className="w-3 h-3 mr-1" />
+                                {formatDate(student.birthDate)} ({student.gender})
+                              </div>
                             </div>
-                            <div className="text-xs flex items-center text-gray-500">
-                              <Calendar className="w-3 h-3 mr-1" />
-                              {formatDate(student.birthDate)} ({student.gender})
+                          </td>
+                          <td className="px-3 py-4 align-top">
+                            <div className="text-sm mb-1 font-medium text-gray-900">{student.className}</div>
+                            <div className="text-xs mb-2 text-gray-600">{student.grade}학년</div>
+                            <div>{getIntegrationTypeBadge(student.integrationType)}</div>
+                          </td>
+                          <td className="px-3 py-4 align-top">
+                            <div className="flex flex-col gap-1">
+                              {student.disabilityTypes.slice(0, 2).map((disability, index) => (
+                                <span key={index} className="badge badge-neutral text-xs">
+                                  {disability.type}
+                                </span>
+                              ))}
+                              {student.disabilityTypes.length > 2 && (
+                                <div className="text-xs text-gray-500">
+                                  +{student.disabilityTypes.length - 2}개 더
+                                </div>
+                              )}
+                            </div>
+                            <div className="mt-2">
+                              {getDisabilitySeverityBadge(student.disabilitySeverity)}
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 align-top">
+                            <div className="flex flex-col gap-1">
+                              <div className="flex items-center text-xs">
+                                <Heart className="w-3 h-3 mr-1" style={{ color: 'var(--color-red)' }} />
+                                치료 {student.treatmentSupports.length}개
+                              </div>
+                              <div className="flex items-center text-xs">
+                                <Shield className="w-3 h-3 mr-1" style={{ color: 'var(--color-blue)' }} />
+                                복지 {student.welfareSupports.length}개
+                              </div>
+                              <div className="flex items-center text-xs">
+                                <Users className="w-3 h-3 mr-1" style={{ color: 'var(--color-green)' }} />
+                                보조 {student.assistantSupports.length}개
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-3 py-4 align-top text-center">
+                            {getStatusBadge(student.status)}
+                          </td>
+                          <td className="px-3 py-4 align-top text-center">
+                            <div className="flex gap-2 justify-center">
+                              <button
+                                onClick={() => handleViewStudent(student)}
+                                className="btn btn-ghost btn-xs"
+                                title="학생 상세보기"
+                              >
+                                <Eye className="w-3 h-3" />
+                              </button>
+                              <button
+                                onClick={() => handleEditStudent(student)}
+                                className="btn btn-ghost btn-xs"
+                                title="학생 정보 수정"
+                              >
+                                <Edit className="w-3 h-3" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteStudent(student.id)}
+                                className="btn btn-ghost btn-xs"
+                                style={{ color: 'var(--color-red)' }}
+                                title="학생 삭제"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                
+                {/* 모바일/태블릿 카드 뷰 */}
+                <div className="lg:hidden space-y-4">
+                  {filteredStudents.map((student) => (
+                    <div key={student.id} className="card card-interactive">
+                      <div className="card-body p-4">
+                        {/* 학생 기본 정보 헤더 */}
+                        <div className="flex justify-between items-start mb-4">
+                          <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                              {student.name}
+                            </h3>
+                            <div className="flex items-center text-sm text-gray-500 mb-2">
+                              <Calendar className="w-4 h-4 mr-1" />
+                              {formatDate(student.birthDate)} • {student.gender}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <span className="text-sm font-medium">{student.className}</span>
+                              <span className="text-sm text-gray-500">{student.grade}학년</span>
+                              {getStatusBadge(student.status)}
                             </div>
                           </div>
-                        </td>
-                        <td className="px-3 py-4 align-top">
-                          <div className="text-sm mb-1 font-medium text-gray-900">{student.className}</div>
-                          <div className="text-xs mb-2 text-gray-600">{student.grade}학년</div>
-                          <div>{getIntegrationTypeBadge(student.integrationType)}</div>
-                        </td>
-                        <td className="px-3 py-4 align-top">
-                          <div className="flex flex-col gap-1">
-                            {student.disabilityTypes.slice(0, 2).map((disability, index) => (
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleViewStudent(student)}
+                              className="btn btn-ghost btn-sm"
+                              title="학생 상세보기"
+                            >
+                              <Eye className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => handleEditStudent(student)}
+                              className="btn btn-ghost btn-sm"
+                              title="학생 정보 수정"
+                            >
+                              <Edit className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+                        
+                        {/* 통합교육 정보 */}
+                        <div className="mb-4">
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm font-medium text-gray-700">통합교육:</span>
+                            {getIntegrationTypeBadge(student.integrationType)}
+                          </div>
+                        </div>
+                        
+                        {/* 장애 정보 */}
+                        <div className="mb-4">
+                          <span className="text-sm font-medium text-gray-700 block mb-2">장애 정보:</span>
+                          <div className="flex flex-wrap gap-2 mb-2">
+                            {student.disabilityTypes.slice(0, 3).map((disability, index) => (
                               <span key={index} className="badge badge-neutral text-xs">
                                 {disability.type}
                               </span>
                             ))}
-                            {student.disabilityTypes.length > 2 && (
-                              <div className="text-xs text-gray-500">
-                                +{student.disabilityTypes.length - 2}개 더
-                              </div>
+                            {student.disabilityTypes.length > 3 && (
+                              <span className="text-xs text-gray-500">
+                                +{student.disabilityTypes.length - 3}개 더
+                              </span>
                             )}
                           </div>
-                          <div className="mt-2">
-                            {getDisabilitySeverityBadge(student.disabilitySeverity)}
-                          </div>
-                        </td>
-                        <td className="px-3 py-4 align-top">
-                          <div className="flex flex-col gap-1">
-                            <div className="flex items-center text-xs">
-                              <Heart className="w-3 h-3 mr-1" style={{ color: 'var(--color-red)' }} />
-                              치료 {student.treatmentSupports.length}개
+                          {getDisabilitySeverityBadge(student.disabilitySeverity)}
+                        </div>
+                        
+                        {/* 지원 현황 */}
+                        <div className="border-t border-gray-200 pt-4">
+                          <span className="text-sm font-medium text-gray-700 block mb-3">지원 현황:</span>
+                          <div className="grid grid-cols-3 gap-4">
+                            <div className="text-center">
+                              <div className="flex items-center justify-center mb-1">
+                                <Heart className="w-4 h-4" style={{ color: 'var(--color-red)' }} />
+                              </div>
+                              <div className="text-sm font-medium">{student.treatmentSupports.length}</div>
+                              <div className="text-xs text-gray-500">치료지원</div>
                             </div>
-                            <div className="flex items-center text-xs">
-                              <Shield className="w-3 h-3 mr-1" style={{ color: 'var(--color-blue)' }} />
-                              복지 {student.welfareSupports.length}개
+                            <div className="text-center">
+                              <div className="flex items-center justify-center mb-1">
+                                <Shield className="w-4 h-4" style={{ color: 'var(--color-blue)' }} />
+                              </div>
+                              <div className="text-sm font-medium">{student.welfareSupports.length}</div>
+                              <div className="text-xs text-gray-500">복지지원</div>
                             </div>
-                            <div className="flex items-center text-xs">
-                              <Users className="w-3 h-3 mr-1" style={{ color: 'var(--color-green)' }} />
-                              보조 {student.assistantSupports.length}개
+                            <div className="text-center">
+                              <div className="flex items-center justify-center mb-1">
+                                <Users className="w-4 h-4" style={{ color: 'var(--color-green)' }} />
+                              </div>
+                              <div className="text-sm font-medium">{student.assistantSupports.length}</div>
+                              <div className="text-xs text-gray-500">보조지원</div>
                             </div>
                           </div>
-                        </td>
-                        <td className="px-3 py-4 align-top text-center">
-                          {getStatusBadge(student.status)}
-                        </td>
-                        <td className="px-3 py-4 align-top text-center">
-                          <div className="flex gap-2 justify-center">
-                            <button
-                              onClick={() => handleViewStudent(student)}
-                              className="btn btn-ghost btn-xs"
-                              title="학생 상세보기"
-                            >
-                              <Eye className="w-3 h-3" />
-                            </button>
-                            <button
-                              onClick={() => handleEditStudent(student)}
-                              className="btn btn-ghost btn-xs"
-                              title="학생 정보 수정"
-                            >
-                              <Edit className="w-3 h-3" />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteStudent(student.id)}
-                              className="btn btn-ghost btn-xs"
-                              style={{ color: 'var(--color-red)' }}
-                              title="학생 삭제"
-                            >
-                              <Trash2 className="w-3 h-3" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                  </table>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              </>
             )}
           </div>
         </div>

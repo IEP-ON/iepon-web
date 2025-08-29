@@ -36,24 +36,24 @@ const AdminPage = () => {
 
   return (
     <Layout user={user}>
-      <div className="container py-8">
+      <div className="container py-4 sm:py-6 md:py-8">
         {/* 페이지 헤더 */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="mb-6 sm:mb-8 px-4">
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
             <div style={{
-              width: '3rem',
-              height: '3rem',
+              width: '2.5rem',
+              height: '2.5rem',
               backgroundColor: 'var(--color-black)',
               borderRadius: 'var(--radius-lg)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <Shield className="w-5 h-5 text-white" />
+              <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <div>
-              <h1 className="text-heading-1 mb-1">관리자 대시보드</h1>
-              <p className="text-body" style={{ color: 'var(--color-text-secondary)' }}>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-1 truncate">관리자 대시보드</h1>
+              <p className="text-sm sm:text-base" style={{ color: 'var(--color-text-secondary)' }}>
                 시스템 관리 및 사용자 현황을 확인하세요
               </p>
             </div>
@@ -61,7 +61,7 @@ const AdminPage = () => {
         </div>
 
         {/* 관리자 기능 카드 */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 sm:mb-8 px-4">
           {adminFeatures.map((feature) => {
             const IconComponent = feature.icon;
             return (
@@ -72,19 +72,19 @@ const AdminPage = () => {
               >
                 <div className="card-body">
                   <div style={{
-                    width: '3rem',
-                    height: '3rem',
+                    width: '2.5rem',
+                    height: '2.5rem',
                     backgroundColor: 'var(--color-bg-secondary)',
                     borderRadius: 'var(--radius-lg)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    marginBottom: 'var(--space-4)'
+                    marginBottom: 'var(--space-3)'
                   }}>
-                    <IconComponent className="w-5 h-5" style={{ color: 'var(--color-text-secondary)' }} />
+                    <IconComponent className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--color-text-secondary)' }} />
                   </div>
-                  <h3 className="text-heading-4 mb-2">{feature.title}</h3>
-                  <p className="text-body-sm" style={{ color: 'var(--color-text-secondary)' }}>{feature.description}</p>
+                  <h3 className="text-base sm:text-lg font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-xs sm:text-sm" style={{ color: 'var(--color-text-secondary)' }}>{feature.description}</p>
                 </div>
               </Link>
             );

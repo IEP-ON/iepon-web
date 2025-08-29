@@ -223,7 +223,7 @@ const LessonPlanGenerator: React.FC<LessonPlanGeneratorProps> = ({
 
       const result = await aiGeneration.generateWithContext(
         currentStudent.id,
-        request,
+        request as any,
         preferences
       );
 

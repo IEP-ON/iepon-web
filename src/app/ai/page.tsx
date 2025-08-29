@@ -108,19 +108,19 @@ export default function AIPage() {
 
   return (
     <Layout user={user}>
-      <div className="min-h-screen bg-gray-50 p-6">
+      <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
         <div className="max-w-6xl mx-auto">
           {/* 헤더 */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">AI 생성 서비스</h1>
-            <p className="text-gray-600">학생별 맞춤형 교육 자료를 AI로 생성합니다</p>
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">AI 생성 서비스</h1>
+            <p className="text-sm sm:text-base text-gray-600">학생별 맞춤형 교육 자료를 AI로 생성합니다</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* 생성 폼 */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg shadow p-6">
-                <h2 className="text-xl font-semibold mb-4">새 자료 생성</h2>
+              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold mb-4">새 자료 생성</h2>
                 
                 {/* 학생 선택 */}
                 <div className="mb-4">
@@ -128,7 +128,7 @@ export default function AIPage() {
                   <select 
                     value={selectedStudent}
                     onChange={(e) => setSelectedStudent(e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full p-3 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-base"
                   >
                     <option value="">학생을 선택하세요</option>
                     {mockStudents.map(student => (
@@ -145,17 +145,17 @@ export default function AIPage() {
                       <button
                         key={serviceType}
                         onClick={() => setSelectedService(serviceType)}
-                        className={`w-full p-3 text-left rounded-lg border transition-colors ${
+                        className={`w-full p-3 sm:p-4 text-left rounded-lg border transition-colors touch-manipulation ${
                           selectedService === serviceType
                             ? 'border-blue-500 bg-blue-50'
-                            : 'border-gray-200 hover:border-gray-300'
+                            : 'border-gray-200 hover:border-gray-300 active:bg-gray-50'
                         }`}
                       >
                         <div className="flex items-center mb-1">
-                          <span className="text-lg mr-2">{getServiceIcon(serviceType)}</span>
-                          <span className="font-medium">{AI_SERVICE_LABELS[serviceType]}</span>
+                          <span className="text-lg sm:text-xl mr-2 sm:mr-3">{getServiceIcon(serviceType)}</span>
+                          <span className="font-medium text-sm sm:text-base">{AI_SERVICE_LABELS[serviceType]}</span>
                         </div>
-                        <div className="text-sm text-gray-600">{AI_SERVICE_DESCRIPTIONS[serviceType]}</div>
+                        <div className="text-xs sm:text-sm text-gray-600">{AI_SERVICE_DESCRIPTIONS[serviceType]}</div>
                       </button>
                     ))}
                   </div>
@@ -165,7 +165,7 @@ export default function AIPage() {
                 <button
                   onClick={handleGenerate}
                   disabled={!selectedStudent || !selectedService || isGenerating}
-                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                  className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-base font-medium touch-manipulation"
                 >
                   {isGenerating ? (
                     <div className="flex items-center justify-center">
@@ -191,17 +191,17 @@ export default function AIPage() {
             </div>
 
             {/* 결과 목록 */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 mt-6 lg:mt-0">
               <div className="bg-white rounded-lg shadow">
-                <div className="p-6 border-b">
-                  <h2 className="text-xl font-semibold">생성 결과 ({results.length})</h2>
+                <div className="p-4 sm:p-6 border-b">
+                  <h2 className="text-lg sm:text-xl font-semibold">생성 결과 ({results.length})</h2>
                 </div>
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   {results.length === 0 ? (
-                    <div className="text-center py-12">
-                      <div className="text-6xl mb-4">🤖</div>
-                      <h3 className="text-lg font-medium text-gray-900 mb-2">아직 생성된 결과가 없습니다</h3>
-                      <p className="text-gray-500">왼쪽에서 학생과 서비스를 선택하여 AI 생성을 시작해보세요</p>
+                    <div className="text-center py-8 sm:py-12">
+                      <div className="text-4xl sm:text-6xl mb-4">🤖</div>
+                      <h3 className="text-base sm:text-lg font-medium text-gray-900 mb-2">아직 생성된 결과가 없습니다</h3>
+                      <p className="text-sm sm:text-base text-gray-500 px-4">위에서 학생과 서비스를 선택하여 AI 생성을 시작해보세요</p>
                     </div>
                   ) : (
                     <div className="space-y-4">
@@ -210,13 +210,13 @@ export default function AIPage() {
                         const student = mockStudents.find(s => s.id === result.studentId);
                         
                         return (
-                          <div key={result.id} className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                            <div className="flex justify-between items-start mb-3">
+                          <div key={result.id} className="border rounded-lg p-3 sm:p-4 hover:bg-gray-50 transition-colors">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-3">
                               <div className="flex items-start">
-                                <span className="text-2xl mr-3">{getServiceIcon(result.serviceType)}</span>
-                                <div>
-                                  <h3 className="font-medium text-gray-900">{AI_SERVICE_LABELS[result.serviceType]}</h3>
-                                  <p className="text-sm text-gray-600">학생: {student?.name}</p>
+                                <span className="text-xl sm:text-2xl mr-2 sm:mr-3">{getServiceIcon(result.serviceType)}</span>
+                                <div className="flex-1 min-w-0">
+                                  <h3 className="font-medium text-gray-900 text-sm sm:text-base truncate">{AI_SERVICE_LABELS[result.serviceType]}</h3>
+                                  <p className="text-xs sm:text-sm text-gray-600">학생: {student?.name}</p>
                                   <p className="text-xs text-gray-500">
                                     {new Date(result.generatedAt).toLocaleDateString('ko-KR', {
                                       year: 'numeric',
@@ -228,22 +228,22 @@ export default function AIPage() {
                                   </p>
                                 </div>
                               </div>
-                              <div className="flex items-center space-x-2">
+                              <div className="flex items-center justify-between sm:justify-end sm:flex-col sm:items-end gap-2">
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${badge.color}`}>
                                   {badge.text}
                                 </span>
                                 <div className="text-right">
-                                  <div className="text-sm text-gray-500">품질: {result.qualityScore}점</div>
+                                  <div className="text-xs sm:text-sm text-gray-500">품질: {result.qualityScore}점</div>
                                   <button
                                     onClick={() => setSelectedResult(result)}
-                                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                                    className="text-blue-600 hover:text-blue-800 text-xs sm:text-sm font-medium touch-manipulation"
                                   >
                                     상세보기
                                   </button>
                                 </div>
                               </div>
                             </div>
-                            <p className="text-sm text-gray-700">{result.generatedContent.summary}</p>
+                            <p className="text-xs sm:text-sm text-gray-700">{result.generatedContent.summary}</p>
                           </div>
                         );
                       })}
@@ -256,48 +256,48 @@ export default function AIPage() {
 
           {/* 상세보기 모달 */}
           {selectedResult && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
               <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-                <div className="p-6 border-b sticky top-0 bg-white">
+                <div className="p-4 sm:p-6 border-b sticky top-0 bg-white">
                   <div className="flex justify-between items-center">
-                    <div className="flex items-center">
-                      <span className="text-2xl mr-3">{getServiceIcon(selectedResult.serviceType)}</span>
-                      <div>
-                        <h3 className="text-xl font-semibold">{AI_SERVICE_LABELS[selectedResult.serviceType]}</h3>
-                        <p className="text-gray-600">
+                    <div className="flex items-center flex-1 min-w-0">
+                      <span className="text-xl sm:text-2xl mr-2 sm:mr-3">{getServiceIcon(selectedResult.serviceType)}</span>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg sm:text-xl font-semibold truncate">{AI_SERVICE_LABELS[selectedResult.serviceType]}</h3>
+                        <p className="text-sm sm:text-base text-gray-600 truncate">
                           {mockStudents.find(s => s.id === selectedResult.studentId)?.name}
                         </p>
                       </div>
                     </div>
                     <button
                       onClick={() => setSelectedResult(null)}
-                      className="text-gray-400 hover:text-gray-600 text-2xl"
+                      className="text-gray-400 hover:text-gray-600 text-xl sm:text-2xl ml-2 touch-manipulation"
                     >
                       ✕
                     </button>
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="p-4 sm:p-6">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                     {/* 주요 내용 */}
                     <div className="lg:col-span-2">
-                      <h4 className="font-semibold text-gray-900 mb-3">생성된 내용</h4>
-                      <div className="bg-gray-50 rounded-lg p-4 mb-4">
-                        <p className="text-gray-800 leading-relaxed">{selectedResult.generatedContent.summary}</p>
+                      <h4 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">생성된 내용</h4>
+                      <div className="bg-gray-50 rounded-lg p-3 sm:p-4 mb-4">
+                        <p className="text-gray-800 leading-relaxed text-sm sm:text-base">{selectedResult.generatedContent.summary}</p>
                       </div>
                       
                       {selectedResult.generatedContent.details && (
-                        <div className="bg-blue-50 rounded-lg p-4">
-                          <h5 className="font-medium text-blue-900 mb-2">상세 내용</h5>
-                          <p className="text-blue-800">{selectedResult.generatedContent.details}</p>
+                        <div className="bg-blue-50 rounded-lg p-3 sm:p-4">
+                          <h5 className="font-medium text-blue-900 mb-2 text-sm sm:text-base">상세 내용</h5>
+                          <p className="text-blue-800 text-sm sm:text-base">{selectedResult.generatedContent.details}</p>
                         </div>
                       )}
                     </div>
 
                     {/* 메타데이터 */}
                     <div>
-                      <h4 className="font-semibold text-gray-900 mb-3">생성 정보</h4>
+                      <h4 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">생성 정보</h4>
                       <div className="space-y-4">
                         <div className="bg-white border rounded-lg p-3">
                           <h5 className="font-medium text-gray-700 mb-2">품질 지표</h5>

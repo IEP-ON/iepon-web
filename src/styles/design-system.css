@@ -57,6 +57,7 @@
   --space-8: 2rem;      /* 32px */
   --space-12: 3rem;     /* 48px */
   --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
   --space-24: 6rem;     /* 96px */
 
   /* Border Radius - Minimal like Linear */
@@ -199,6 +200,12 @@
 }
 
 /* Button Sizes */
+.btn-xs {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--text-xs);
+  min-height: 1.5rem;
+}
+
 .btn-sm {
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
@@ -215,6 +222,17 @@
   padding: var(--space-4) var(--space-6);
   font-size: var(--text-lg);
   min-height: 3rem;
+}
+
+/* Button variants */
+.btn-white {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  border: 1px solid var(--color-border);
+}
+
+.btn-white:hover:not(:disabled) {
+  background-color: var(--color-bg-secondary);
 }
 
 /* ============================================
@@ -404,15 +422,26 @@
   padding: 0 var(--space-4);
 }
 
-@media (min-width: 640px) {
+/* Mobile: iPhone 14 (390px), Galaxy S23 (360px) */
+@media (max-width: 640px) {
   .container {
-    padding: 0 var(--space-6);
+    padding: 0 var(--space-3); /* 12px on mobile */
+    max-width: 100%;
   }
 }
 
-@media (min-width: 1024px) {
+/* Tablet: iPad (768px), Galaxy Tab (800px) */
+@media (min-width: 641px) and (max-width: 1024px) {
   .container {
-    padding: 0 var(--space-8);
+    padding: 0 var(--space-6); /* 24px on tablet */
+  }
+}
+
+/* Desktop: 1920px (Full HD 24") */
+@media (min-width: 1025px) {
+  .container {
+    padding: 0 var(--space-8); /* 32px on desktop */
+    max-width: 1200px;
   }
 }
 
@@ -440,8 +469,6 @@
 .py-8 { padding-top: var(--space-8); padding-bottom: var(--space-8); }
 .py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
 .py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
-.py-20 { padding-top: var(--space-20); padding-bottom: var(--space-20); }
-.py-24 { padding-top: var(--space-24); padding-bottom: var(--space-24); }
 
 .px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
 .px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
@@ -612,6 +639,8 @@
 @media (max-width: 640px) {
   .btn {
     min-height: 44px; /* Better touch targets on mobile */
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--text-base);
   }
   
   .card {
@@ -629,6 +658,48 @@
   .grid-cols-1.md\:grid-cols-4 {
     gap: var(--space-3);
   }
+  
+  /* Mobile-specific spacing adjustments */
+  .py-24 { 
+    padding-top: var(--space-12); 
+    padding-bottom: var(--space-12); 
+  }
+  
+  .py-20 { 
+    padding-top: var(--space-8); 
+    padding-bottom: var(--space-8); 
+  }
+  
+  .py-16 { 
+    padding-top: var(--space-8); 
+    padding-bottom: var(--space-8); 
+  }
+  
+  .py-12 { 
+    padding-top: var(--space-6); 
+    padding-bottom: var(--space-6); 
+  }
+  
+  /* Mobile table styling */
+  table {
+    font-size: var(--text-sm);
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Mobile modal adjustments */
+  .modal {
+    padding: var(--space-3);
+  }
+  
+  .modal-content {
+    margin: var(--space-4) auto;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
 }
 
 /* Spacing Utilities */
@@ -640,9 +711,11 @@
 .p-8 { padding: var(--space-8); }
 
 .py-2 { padding-top: var(--space-2); padding-bottom: var(--space-2); }
-.py-3 { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-3 { padding: 5rem; }
 .py-4 { padding-top: var(--space-4); padding-bottom: var(--space-4); }
 .py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py-20 { padding-top: var(--space-20); padding-bottom: var(--space-20); }
+.py-24 { padding-top: var(--space-24); padding-bottom: var(--space-24); }
 
 .px-2 { padding-left: var(--space-2); padding-right: var(--space-2); }
 .px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
@@ -665,15 +738,40 @@
 .mt-6 { margin-top: var(--space-6); }
 .mt-8 { margin-top: var(--space-8); }
 
-/* Responsive adjustments */
+/* Tablet adjustments */
+@media (max-width: 1024px) and (min-width: 641px) {
+  .container {
+    padding: 0 var(--space-4);
+  }
+  
+  .py-24 { 
+    padding-top: var(--space-16); 
+    padding-bottom: var(--space-16); 
+  }
+}
+
+/* Mobile adjustments */
 @media (max-width: 768px) {
   .grid-cols-2,
-  .grid-cols-3 {
+  .grid-cols-3,
+  .grid-cols-4 {
     grid-template-columns: 1fr;
   }
   
   .container {
     padding: 0 var(--space-3);
+  }
+  
+  /* Force full width for tables on mobile */
+  .table-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  /* Stack flex items on mobile */
+  .flex-responsive {
+    flex-direction: column;
+    gap: var(--space-3);
   }
 }
 
@@ -750,5 +848,69 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   Mobile-Specific Utilities
+============================================ */
+
+/* Touch-friendly button sizing */
+.btn-touch {
+  min-height: 48px;
+  min-width: 48px;
+  padding: var(--space-3) var(--space-4);
+}
+
+/* Mobile typography utilities */
+.text-mobile-lg {
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+
+.text-mobile-base {
+  font-size: var(--text-base);
+  line-height: 1.5;
+}
+
+/* Mobile spacing utilities */
+.mobile-p-4 { padding: var(--space-4); }
+.mobile-py-6 { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.mobile-px-3 { padding-left: var(--space-3); padding-right: var(--space-3); }
+
+/* Hide/show utilities for different screen sizes */
+@media (max-width: 640px) {
+  .hidden-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hidden-tablet { display: none !important; }
+  .show-tablet { display: block !important; }
+}
+
+@media (min-width: 1025px) {
+  .hidden-desktop { display: none !important; }
+  .show-desktop { display: block !important; }
+}
+
+/* Responsive table helpers */
+.table-mobile {
+  font-size: var(--text-sm);
+}
+
+.table-mobile th,
+.table-mobile td {
+  padding: var(--space-2) var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .table-mobile {
+    font-size: var(--text-xs);
+  }
+  
+  .table-mobile th,
+  .table-mobile td {
+    padding: var(--space-1) var(--space-2);
   }
 }

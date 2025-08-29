@@ -92,7 +92,7 @@ const Header = ({ user, onLogout }: HeaderProps) => {
           </div>
 
           {/* 데스크톱 내비게이션 */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {navigation.map((item) => (
               <div key={item.name} className="relative">
                 {item.children ? (
@@ -177,7 +177,7 @@ const Header = ({ user, onLogout }: HeaderProps) => {
                     }}>
                       <User size={14} style={{ color: 'var(--color-text-secondary)' }} />
                     </div>
-                    <span className="hidden sm:block text-body-sm font-medium">
+                    <span className="hidden md:block text-body-sm font-medium max-w-24 truncate">
                       {user.name}
                     </span>
                   </button>
@@ -245,40 +245,42 @@ const Header = ({ user, onLogout }: HeaderProps) => {
 
             {/* 모바일 메뉴 토글 */}
             <button
-              className="btn btn-ghost btn-sm md:hidden"
+              className="btn btn-ghost btn-sm lg:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="메뉴 토글"
             >
-              {isMobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
 
         {/* 모바일 메뉴 */}
         {isMobileMenuOpen && (
-          <div className="md:hidden animate-fade-in">
-            <div className="px-2 pt-2 pb-3 space-y-1 mt-2" style={{
-              backgroundColor: 'var(--color-bg-secondary)',
-              borderRadius: 'var(--radius-lg)',
-              border: '1px solid var(--color-border)'
-            }}>
+          <div className="lg:hidden animate-fade-in absolute top-full left-0 right-0 z-50" style={{ backgroundColor: 'var(--color-white)', borderTop: '1px solid var(--color-border)' }}>
+            <div className="container">
+              <div className="px-4 pt-4 pb-6 space-y-2" style={{
+                backgroundColor: 'var(--color-white)',
+                borderRadius: 'var(--radius-lg)',
+                maxHeight: '80vh',
+                overflowY: 'auto'
+              }}>
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     href={item.href}
-                    className="block px-3 py-2 text-body-sm font-medium rounded-md transition-colors"
-                    style={{ color: 'var(--color-text-secondary)' }}
+                    className="block px-4 py-3 text-base font-medium rounded-lg transition-colors"
+                    style={{ color: 'var(--color-text-secondary)', borderBottom: '1px solid var(--color-border)' }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                   {item.children && (
-                    <div className="ml-4 space-y-1">
+                    <div className="ml-6 space-y-1 pb-2">
                       {item.children.map((child) => (
                         <Link
                           key={child.name}
                           href={child.href}
-                          className="block px-3 py-1 text-body-xs font-medium rounded-md transition-colors"
+                          className="block px-3 py-2 text-sm font-medium rounded-md transition-colors"
                           style={{ color: 'var(--color-text-tertiary)' }}
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
@@ -289,6 +291,7 @@ const Header = ({ user, onLogout }: HeaderProps) => {
                   )}
                 </div>
               ))}
+              </div>
             </div>
           </div>
         )}

@@ -150,7 +150,7 @@ const CurriculumGenerationEngine: React.FC<CurriculumGenerationEngineProps> = ({
       // AI 생성 실행
       const result = await aiGeneration.generateWithContext(
         currentStudent.id,
-        request,
+        request as any,
         preferences
       );
 

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Layout from '@/components/layout/Layout';
-import { Button } from '@/components/ui/button';
+import Button from '@/components/common/Button';
 import { 
   User, 
   Calendar, 
@@ -44,57 +44,9 @@ const mockStudentDetail: Student = {
   disabilityRegistrationDate: "2020-01-15",
   hasWelfareCard: true,
   disabilitySeverity: "경증",
-  welfareSupports: [
-    {
-      id: "welfare-1",
-      type: "장애아동수당",
-      agency: "구청 복지과",
-      content: "월 20만원 지원",
-      startDate: "2020-01-01",
-      status: "active"
-    },
-    {
-      id: "welfare-2", 
-      type: "보육료지원",
-      agency: "교육청",
-      content: "특수교육 관련 서비스 지원",
-      startDate: "2020-03-01",
-      status: "active"
-    }
-  ],
-  treatmentSupports: [
-    {
-      id: "treatment-1",
-      type: "언어치료",
-      frequency: "주2회",
-      agency: "서울언어치료센터",
-      therapistName: "박언어치료사",
-      therapistContact: "010-1234-5678",
-      startDate: "2020-06-01",
-      status: "active"
-    },
-    {
-      id: "treatment-2",
-      type: "작업치료", 
-      frequency: "주1회",
-      agency: "아동발달센터",
-      therapistName: "김작업치료사",
-      therapistContact: "010-2345-6789",
-      startDate: "2021-01-01",
-      status: "active"
-    }
-  ],
-  assistantSupports: [
-    {
-      id: "assistant-1",
-      type: "특수교육실무사",
-      hoursPerWeek: 15,
-      name: "정실무사",
-      contact: "010-3456-7890",
-      startDate: "2022-03-01",
-      status: "active"
-    }
-  ],
+  welfareSupports: ["장애아동수당", "보육료지원"],
+  treatmentSupports: ["언어치료", "작업치료"],
+  assistantSupports: ["특수교육실무사"],
   createdAt: "2020-01-01T00:00:00Z",
   updatedAt: "2024-01-01T00:00:00Z",
   status: "active",
@@ -392,25 +344,10 @@ const StudentDetailPage = () => {
               {/* 복지 지원 */}
               <div className="bg-white shadow rounded-lg p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">복지 지원</h3>
-                <div className="space-y-4">
-                  {student.welfareSupports.map((support) => (
-                    <div key={support.id} className="border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-gray-900">{support.type}</h4>
-                        {getStatusBadge(support.status)}
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-                        <div>
-                          <p><span className="font-medium">지원 기관:</span> {support.agency}</p>
-                          <p><span className="font-medium">지원 내용:</span> {support.content}</p>
-                        </div>
-                        <div>
-                          <p><span className="font-medium">시작일:</span> {formatDate(support.startDate)}</p>
-                          {support.endDate && (
-                            <p><span className="font-medium">종료일:</span> {formatDate(support.endDate)}</p>
-                          )}
-                        </div>
-                      </div>
+                <div className="space-y-2">
+                  {student.welfareSupports.map((welfare, index) => (
+                    <div key={index} className="border rounded-lg p-4">
+                      <h4 className="font-medium text-gray-900">{welfare}</h4>
                     </div>
                   ))}
                 </div>
@@ -419,23 +356,10 @@ const StudentDetailPage = () => {
               {/* 치료 지원 */}
               <div className="bg-white shadow rounded-lg p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">치료 지원</h3>
-                <div className="space-y-4">
-                  {student.treatmentSupports.map((treatment) => (
-                    <div key={treatment.id} className="border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-gray-900">{treatment.type}</h4>
-                        {getStatusBadge(treatment.status)}
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-                        <div>
-                          <p><span className="font-medium">빈도:</span> {treatment.frequency}</p>
-                          <p><span className="font-medium">기관:</span> {treatment.agency}</p>
-                        </div>
-                        <div>
-                          <p><span className="font-medium">담당자:</span> {treatment.therapistName}</p>
-                          <p><span className="font-medium">연락처:</span> {treatment.therapistContact}</p>
-                        </div>
-                      </div>
+                <div className="space-y-2">
+                  {student.treatmentSupports.map((treatment, index) => (
+                    <div key={index} className="border rounded-lg p-4">
+                      <h4 className="font-medium text-gray-900">{treatment}</h4>
                     </div>
                   ))}
                 </div>
@@ -444,23 +368,10 @@ const StudentDetailPage = () => {
               {/* 보조인력 지원 */}
               <div className="bg-white shadow rounded-lg p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">보조인력 지원</h3>
-                <div className="space-y-4">
-                  {student.assistantSupports.map((assistant) => (
-                    <div key={assistant.id} className="border rounded-lg p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-medium text-gray-900">{assistant.type}</h4>
-                        {getStatusBadge(assistant.status)}
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
-                        <div>
-                          <p><span className="font-medium">주당 시간:</span> {assistant.hoursPerWeek}시간</p>
-                          <p><span className="font-medium">담당자:</span> {assistant.name}</p>
-                        </div>
-                        <div>
-                          <p><span className="font-medium">연락처:</span> {assistant.contact}</p>
-                          <p><span className="font-medium">시작일:</span> {formatDate(assistant.startDate)}</p>
-                        </div>
-                      </div>
+                <div className="space-y-2">
+                  {student.assistantSupports.map((assistant, index) => (
+                    <div key={index} className="border rounded-lg p-4">
+                      <h4 className="font-medium text-gray-900">{assistant}</h4>
                     </div>
                   ))}
                 </div>

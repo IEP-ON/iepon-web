@@ -30,9 +30,9 @@ export interface Student {
   disabilitySeverity: '경증' | '중증';
   
   // 지원 정보
-  welfareSupports: WelfareSupport[];
-  treatmentSupports: TreatmentSupport[];
-  assistantSupports: AssistantSupport[];
+  welfareSupports: string[];
+  treatmentSupports: string[];
+  assistantSupports: string[];
   
   // 가족 정보
   guardianName?: string;
